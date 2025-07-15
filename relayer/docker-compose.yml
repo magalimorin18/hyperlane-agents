@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  lukso-relayer-testnet:
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:agents-v1.4.0
+    command: ./relayer
+    container_name: lukso-relayer-testnet
+    environment:
+      - CONFIG_FILES=/config/config-agents.json
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - /Users/magali/Documents/LUKSO/dev/hyperlane-validator/relayer/config-agents.json:/config/config-agents.json:ro
+    restart: unless-stopped

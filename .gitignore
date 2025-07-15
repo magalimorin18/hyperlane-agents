@@ -1,0 +1,5 @@
+/validator-2/.env
+/validator/.env
+.env
+/node_modules
+.vscode

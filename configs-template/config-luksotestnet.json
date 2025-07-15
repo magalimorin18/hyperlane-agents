@@ -1,0 +1,37 @@
+{
+  "chains": {
+    "luksotestnet": {
+      "name": "luksotestnet",
+      "chainId": 4201,
+      "protocol": "ethereum",
+      "mailbox": "0x5E8cE87e23480Fe86A4234d76f9dC5f9379Bb3a6",
+      "interchainGasPaymaster": "0xD881d5d9EA608027502Fe5Addf93aB5786D19397",
+      "validatorAnnounce": "0xc7a980D858d8F20b3A06fA6B8Ca032A2A163B7fd",
+      "merkleTreeHook": "0xbAbC48E422fdcFc089752B5EFf29d8Ea90Ffc093",
+      "signer": {
+        "region": "eu-central-1",
+        "type": "aws",
+        "id": "alias/hyperlane-validator-signer-lukso-testnet"
+      },
+      "rpcUrls": [
+        {
+          "http": "https://rpc.testnet.lukso.network"
+        }
+      ]
+    }
+  },
+  "originChainName": "luksotestnet",
+  "validator": {
+    "id": "alias/hyperlane-validator-signer-lukso-testnet",
+    "type": "aws",
+    "region": "eu-central-1"
+  },
+  "checkpointSyncer": {
+    "type": "s3",
+    "bucket": "hyperlane-validator-signatures-1-lukso-testnet",
+    "folder": "lukso-testnet",
+    "region": "eu-central-1"
+  },
+  "reorgPeriod": 14,
+  "metrics": "9090"
+}

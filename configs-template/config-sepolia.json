@@ -1,0 +1,25 @@
+{
+  "chains": {
+    "sepolia": {
+      "signer": {
+        "region": "eu-central-1",
+        "type": "aws",
+        "id": "alias/hyperlane-validator-signer-lukso-testnet"
+      }
+    }
+  },
+  "originChainName": "sepolia",
+  "validator": {
+    "id": "alias/hyperlane-validator-signer-lukso-testnet",
+    "type": "aws",
+    "region": "eu-central-1"
+  },
+  "checkpointSyncer": {
+    "type": "s3",
+    "bucket": "hyperlane-validator-signatures-1-lukso-testnet",
+    "folder": "lukso-testnet",
+    "region": "eu-central-1"
+  },
+  "reorgPeriod": 14,
+  "metrics": "9090"
+}

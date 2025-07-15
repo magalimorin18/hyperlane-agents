@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  lukso-validator-testnet-2:
+    image: gcr.io/abacus-labs-dev/hyperlane-agent:agents-v1.4.0
+    command: ./validator
+    container_name: lukso-validator-testnet-2
+    environment:
+      - CONFIG_FILES=/config/config-agents.json
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - /home/magali/validator-2/config-agents.json:/config/config-agents.json:ro
+    restart: unless-stopped
