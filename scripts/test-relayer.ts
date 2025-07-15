@@ -1,7 +1,7 @@
 // npx ts-node scripts/test-relayer.ts
 
 import { ethers } from "ethers";
-import { CONFIG, MAILBOX_ABI, PRIVATE_KEY } from "./constants";
+import { CONFIG, MAILBOX_ABI, HYP_NATIVE_PAUSABLE_ABI, PRIVATE_KEY } from "./constants";
 
 // Helper function to convert address to bytes32
 function addressToBytes32(address: string): string {
@@ -230,27 +230,34 @@ class HyperlaneRelayerTest {
         return;
       }
 
-      const mailbox = new ethers.Contract(
-        CONFIG.LUKSO_TESTNET.mailbox,
-        MAILBOX_ABI,
-        wallet
-      );
+      // const mailbox = new ethers.Contract(
+      //   CONFIG.LUKSO_TESTNET.mailbox,
+      //   MAILBOX_ABI,
+      //   wallet
+      // );
 
-      const recipient = addressToBytes32(wallet.address); // Send to self
-      const messageBody = ethers.toUtf8Bytes(
-        `Test message from relayer test at ${new Date().toISOString()}`
-      );
+      const tokenRouter = new ethers.Contract(
+        CONFIG.LUKSO_TESTNET.tokenRouter,
+        HYP_NATIVE_PAUSABLE_ABI,
+        wallet
+      )
+
+      const tokenRecipient = addressToBytes32(wallet.address); // Send to self
+
+      const destination = CONFIG.SEPOLIA.chainId;
+      const amount = ethers.parseEther("0.001")
 
       console.log(
         `📤 Sending message to Sepolia (${CONFIG.SEPOLIA.chainId})...`
       );
-      const mailboxConnected: any = mailbox.connect(wallet);
+      const tokenRouterConnected: any = tokenRouter.connect(wallet);
 
-      const tx = await mailboxConnected.dispatch(
-        CONFIG.SEPOLIA.chainId,
-        recipient,
-        messageBody
-      );
+      const tx = await tokenRouterConnected.transferRemote(
+        destination,
+        tokenRecipient,
+        amount,
+        {value: amount}
+      )
 
       console.log(`✅ Message sent! Transaction: ${tx.hash}`);
       console.log(`   Waiting for confirmation...`);
