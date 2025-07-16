@@ -1,7 +1,12 @@
 // npx ts-node scripts/test-relayer.ts
 
 import { ethers } from "ethers";
-import { CONFIG, MAILBOX_ABI, HYP_NATIVE_PAUSABLE_ABI, PRIVATE_KEY } from "./constants";
+import {
+  CONFIG,
+  MAILBOX_ABI,
+  HYP_NATIVE_PAUSABLE_ABI,
+  PRIVATE_KEY,
+} from "./constants";
 
 // Helper function to convert address to bytes32
 function addressToBytes32(address: string): string {
@@ -135,7 +140,16 @@ class HyperlaneRelayerTest {
         }
       );
 
-      sepoliaMailbox.on("Process", (messageId, event) => {
+      sepoliaMailbox.on("Process", (origin, sender, recipient) => {
+        messageCountReceived++;
+        console.log(`🚀 Message delivered on Sepolia:`);
+        console.log(`   Origin: ${origin}`);
+        console.log(`   sender: ${sender}`);
+        console.log(`   recipient: ${recipient}`);
+      });
+
+      sepoliaMailbox.on("ProcessId", (messageId, event) => {
+        messageCountReceived++;
         console.log(`🚀 Message delivered on Sepolia:`);
         console.log(event);
         console.log(`   Message ID: ${messageId}`);
@@ -222,7 +236,7 @@ class HyperlaneRelayerTest {
 
     try {
       const wallet = new ethers.Wallet(privateKey, this.luksoProvider);
-      console.log("You wallet address is", wallet.address);
+      console.log("Your wallet address is", wallet.address);
       const balance = await wallet.provider?.getBalance(wallet.address);
 
       if (!balance || balance < ethers.parseEther("0.001")) {
@@ -240,12 +254,12 @@ class HyperlaneRelayerTest {
         CONFIG.LUKSO_TESTNET.tokenRouter,
         HYP_NATIVE_PAUSABLE_ABI,
         wallet
-      )
+      );
 
-      const tokenRecipient = addressToBytes32(wallet.address); // Send to self
+      const tokenRecipient = addressToBytes32(CONFIG.SEPOLIA.tokenRouter); // Send to self
 
       const destination = CONFIG.SEPOLIA.chainId;
-      const amount = ethers.parseEther("0.001")
+      const amount = ethers.parseEther("0.001");
 
       console.log(
         `📤 Sending message to Sepolia (${CONFIG.SEPOLIA.chainId})...`
@@ -256,8 +270,8 @@ class HyperlaneRelayerTest {
         destination,
         tokenRecipient,
         amount,
-        {value: amount}
-      )
+        { value: amount }
+      );
 
       console.log(`✅ Message sent! Transaction: ${tx.hash}`);
       console.log(`   Waiting for confirmation...`);

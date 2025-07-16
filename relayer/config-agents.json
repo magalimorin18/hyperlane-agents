@@ -1,17 +1,38 @@
 {
   "chains": {
     "luksotestnet": {
-      "name": "luksotestnet",
+      "blockExplorers": [
+        {
+          "apiKey": "noApiKey",
+          "apiUrl": "https://api.explorer.execution.testnet.lukso.network/api",
+          "family": "blockscout",
+          "name": "LUKSO Testnet Explorer",
+          "url": "https://explorer.execution.testnet.lukso.network"
+        }
+      ],
+      "blocks": {
+        "confirmations": 1,
+        "estimateBlockTime": 13,
+        "reorgPeriod": 2
+      },
       "chainId": 4201,
-      "protocol": "ethereum",
       "index": {
         "from": 5584724,
         "chunk": 1999
       },
-      "mailbox": "0x8312d74f7ab4100937158B772280278e79237A8A",
-      "interchainGasPaymaster": "0x6f2756380FD49228ae25Aa7F2817993cB74Ecc56",
-      "validatorAnnounce": "0xe26aF1677893A82D21cA04001c79E25c193426aB",
-      "merkleTreeHook": "0x6a78d1e52292664a92C62398D1Be59967dA4f9c8",
+      "deployer": {
+        "name": "LUKSO Team"
+      },
+      "displayName": "LUKSO Testnet",
+      "domainId": 4201,
+      "isTestnet": true,
+      "name": "luksotestnet",
+      "nativeToken": {
+        "decimals": 18,
+        "name": "LYXt",
+        "symbol": "LYXt"
+      },
+      "protocol": "ethereum",
       "signer": {
         "region": "eu-central-1",
         "type": "aws",
@@ -21,7 +42,24 @@
         {
           "http": "https://rpc.testnet.lukso.network"
         }
-      ]
+      ],
+      "domainRoutingIsmFactory": "0xD0970DDeC5335A0F46e8aa78C93Acb1316373F1e",
+      "interchainAccountIsm": "0xe6377b155DFbE070c610455205824632688a873D",
+      "interchainAccountRouter": "0x570c87Be0FffB4411ee17451B67245644258A2D8",
+      "interchainGasPaymaster": "0x82069b3Fc03288bd312A3a1845A7BfFeF92a83b3",
+      "interchainSecurityModule": "0xdFbc007B64D60B3B28fc0313F64a2373F092CD8f",
+      "mailbox": "0x8312d74f7ab4100937158B772280278e79237A8A",
+      "merkleTreeHook": "0x6a78d1e52292664a92C62398D1Be59967dA4f9c8",
+      "protocolFee": "0x808d74A80b544e0AAf205Dc7Bc0331D226935063",
+      "proxyAdmin": "0x6a3Db9Bea74E11D24b8C73624C30Bd4002593153",
+      "staticAggregationHookFactory": "0x39FDd2c9aE61aE745C1b54Abf1c71849bBA6E2BB",
+      "staticAggregationIsmFactory": "0xc7020626d4Ee5b861273ab832554796C4717d4c9",
+      "staticMerkleRootMultisigIsmFactory": "0xd3750a33e7B9Be51Fa85BE475f3874261586cf25",
+      "staticMerkleRootWeightedMultisigIsmFactory": "0xB793F271a900E9Fb7e30e617d35E08D9081967d7",
+      "staticMessageIdMultisigIsmFactory": "0x100095b1b25152513fca5C02A8B14F7c045a5F87",
+      "staticMessageIdWeightedMultisigIsmFactory": "0x931CdC046Eca0515A674bbd1D906810F29f60b6a",
+      "testRecipient": "0xCB67BF3D4F296273ab6B8a8258397ca9C23600F2",
+      "validatorAnnounce": "0xe26aF1677893A82D21cA04001c79E25c193426aB"
     },
     "sepolia": {
       "blockExplorers": [
@@ -78,7 +116,7 @@
       "domainRoutingIsmFactory": "0x3F100cBBE5FD5466BdB4B3a15Ac226957e7965Ad",
       "fallbackRoutingHook": "0x17Dc724B7a2F09141C13b8AC33B396073785c2BC",
       "interchainAccountIsm": "0x83a3068B719F764d413625dA77468ED74789ae02",
-      "interchainAccountRouter": "0x8e131c8aE5BF1Ed38D05a00892b6001a7d37739d",
+      "interchainAccountRouter": "0x49262BaD56324003f01043e24DE36Cf804aA36c1",
       "interchainGasPaymaster": "0x6f2756380FD49228ae25Aa7F2817993cB74Ecc56",
       "interchainSecurityModule": "0x4998C54633C45AC907F3465d8579ACB80E27AF1A",
       "mailbox": "0xfFAEF09B3cd11D9b20d1a19bECca54EEC2884766",
@@ -102,6 +140,11 @@
     }
   },
   "relayChains": "luksotestnet,sepolia",
+  "whitelist": {
+    "senderAddress": "0x4E67F38BA227dFB84E168175EF5278B28c35F40e",
+    "destinationDomain": ["11155111"],
+    "recipientAddress": "*"
+  },
   "originChainName": "luksotestnet",
   "reorgPeriod": 14,
   "metrics": "9090",

@@ -61,17 +61,17 @@ Remove folder `rm -rf <folder>`
 To validator:
 
 ```bash
-gcloud compute scp .env hyperlane-validator-lukso-testnet-2:/home/magali --zone=europe-west10-a
-gcloud compute scp config-agents.json hyperlane-validator-lukso-testnet-2:/home/magali --zone=europe-west10-a
-gcloud compute scp docker-compose.yml hyperlane-validator-lukso-testnet-2:/home/magali --zone=europe-west10-a
+gcloud compute scp .env hyperlane-validator-lukso-testnet:/home/magali --zone=europe-west10-a
+gcloud compute scp config-agents.json hyperlane-validator-lukso-testnet:/home/magali --zone=europe-west10-a
+gcloud compute scp docker-compose.yml hyperlane-validator-lukso-testnet:/home/magali --zone=europe-west10-a
 ```
 
 To relayer:
 
 ```bash
-gcloud compute scp .env hyperlane-relayer-lukso-testnet-3:/home/magali --zone=europe-west10-a
-gcloud compute scp config-agents.json hyperlane-relayer-lukso-testnet-3:/home/magali --zone=europe-west10-a
-gcloud compute scp docker-compose.yml hyperlane-relayer-lukso-testnet-3:/home/magali --zone=europe-west10-a
+gcloud compute scp .env hyperlane-relayer-lukso-testnet:/home/magali --zone=europe-west10-a
+gcloud compute scp config-agents.json hyperlane-relayer-lukso-testnet:/home/magali --zone=europe-west10-a
+gcloud compute scp docker-compose.yml hyperlane-relayer-lukso-testnet:/home/magali --zone=europe-west10-a
 ```
 
 ## Improvements
@@ -134,3 +134,7 @@ return: Ok(Some(8045346..=8047345)) → ⏳ Processing blocks 8045346-8047345
 num_logs: 0 → No activity found
 num_logs: 29 → Found 29 events/messages
 pending_ids: 16680 → 16,680 items in processing queue
+
+Questions:
+
+- Your validator address might not be in the authorized validator set for the ISM.
