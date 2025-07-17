@@ -5,7 +5,7 @@
 ## New structure
 
 ```bash
-- ✅ chains/                   # Core contracts for each chains (add Mainnet in the future): Mailbox, ISMs, etc...
+- ✅ local-registry/                   # Core contracts for each chains (add Mainnet in the future): Mailbox, ISMs, etc...
     |- luksotestnet/
         |- metadata.yaml
         |- logo.svg
@@ -28,6 +28,42 @@
 - scripts/
     |- abi/
 ```
+
+## Getting Started
+
+1. Install the dependencies
+
+```bash
+bun install
+```
+
+2. Make sure the relayer private key is funded with some funds to relay messages between chains. See:
+> - LUKSO Testnet Faucet
+> - Sepolia Faucet
+
+3. Create a `.env` file and write the private key that you will use to run the Hyperlane relayer.
+
+```bash
+# 1. Create the `.env` file in your terminal
+cp .env.example .env
+```
+
+```bash
+# 2. Add the private key in your `.env` file
+HYP_KEY=0x...
+```
+
+
+
+## Commands
+
+
+```bash
+# Run the Hyperlane Typescript relayer listening between LUKSO Testnet <> Sepolia
+bun run relayer:testnet
+```
+
+
 
 ## Set up
 
