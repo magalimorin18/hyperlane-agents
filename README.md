@@ -1,3 +1,34 @@
+# Hyperlane agents
+
+> Repository to setup environment for testing + deploying the LUKSO Bridge
+
+## New structure
+
+```bash
+- ✅ chains/                   # Core contracts for each chains (add Mainnet in the future): Mailbox, ISMs, etc...
+    |- luksotestnet/
+        |- metadata.yaml
+        |- logo.svg
+        |- addresses.yaml
+    |- sepolia/
+        |- metadata.yaml
+        |- logo.svg
+        |- addresses.yaml
+- warp-routes/
+    |- init/        # `hyperlane warp init`: contains files used to deploy a warp route
+    |- deployments/ # `hyperlane warp deploy`: contains yaml files of warp routes that have been deployed (to use in UI)
+    |- config/      # `hyperlane warp read`: contains yaml files to UPDATE
+
+- agents/
+    |- relayer/
+        |- rust/        # Rust relayer
+        |- typescript/  # Typescript relayer
+    |- validator/       # Rust validator
+
+- scripts/
+    |- abi/
+```
+
 ## Set up
 
 `yarn`
