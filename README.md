@@ -1,3 +1,70 @@
+# Hyperlane agents
+
+> Repository to setup environment for testing + deploying the LUKSO Bridge
+
+## New structure
+
+```bash
+- ✅ local-registry/                   # Core contracts for each chains (add Mainnet in the future): Mailbox, ISMs, etc...
+    |- luksotestnet/
+        |- metadata.yaml
+        |- logo.svg
+        |- addresses.yaml
+    |- sepolia/
+        |- metadata.yaml
+        |- logo.svg
+        |- addresses.yaml
+- warp-routes/
+    |- init/        # `hyperlane warp init`: contains files used to deploy a warp route
+    |- deployments/ # `hyperlane warp deploy`: contains yaml files of warp routes that have been deployed (to use in UI)
+    |- config/      # `hyperlane warp read`: contains yaml files to UPDATE
+
+- agents/
+    |- relayer/
+        |- rust/        # Rust relayer
+        |- typescript/  # Typescript relayer
+    |- validator/       # Rust validator
+
+- scripts/
+    |- abi/
+```
+
+## Getting Started
+
+1. Install the dependencies
+
+```bash
+bun install
+```
+
+2. Make sure the relayer private key is funded with some funds to relay messages between chains. See:
+> - LUKSO Testnet Faucet
+> - Sepolia Faucet
+
+3. Create a `.env` file and write the private key that you will use to run the Hyperlane relayer.
+
+```bash
+# 1. Create the `.env` file in your terminal
+cp .env.example .env
+```
+
+```bash
+# 2. Add the private key in your `.env` file
+HYP_KEY=0x...
+```
+
+
+
+## Commands
+
+
+```bash
+# Run the Hyperlane Typescript relayer listening between LUKSO Testnet <> Sepolia
+bun run relayer:testnet
+```
+
+
+
 ## Set up
 
 `yarn`
