@@ -1,0 +1,17 @@
+tokens:
+  - addressOrDenom: '0x570c87Be0FffB4411ee17451B67245644258A2D8'
+    chainName: luksotestnet
+    connections:
+      - token: ethereum|sepolia|0x49262BaD56324003f01043e24DE36Cf804aA36c1
+    decimals: 18
+    name: Testnet LUKSO
+    standard: EvmHypNative
+    symbol: LYXt
+  - addressOrDenom: '0x49262BaD56324003f01043e24DE36Cf804aA36c1'
+    chainName: sepolia
+    connections:
+      - token: ethereum|luksotestnet|0x570c87Be0FffB4411ee17451B67245644258A2D8
+    decimals: 18
+    name: Testnet LUKSO
+    standard: EvmHypSynthetic
+    symbol: LYXt

@@ -12,6 +12,9 @@
     "estimateBlockTime": 12,
     "reorgPeriod": 14
   },
+  "index": {
+    "from": 5265029
+  },
   "chainId": 4201,
   "deployer": {
     "name": "Hashi",
